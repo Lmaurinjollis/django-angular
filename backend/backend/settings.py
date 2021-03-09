@@ -11,16 +11,21 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+# A credentials.py file was created to store credentials and hide those
+import backend.credentials as cred
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = ('http://localhost:8081',)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'znto-cw5s-+m8nr%n(=1a9y=vhi)r1r@n8_fha9u5(02wm)zfa'
+SECRET_KEY = cred.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Django Rest Framework
+    "rest_framework",
+    # Generated apps
+    "api.apps.ApiConfig",
+    # CORS will be allowed for request on localhost
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -47,6 +58,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # CORS middleware
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -75,8 +89,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': cred.dbEngine,
+        'NAME': cred.dbName,
+        'USER': cred.dbUser,
+        'PASSWORD': cred.dbPwd,
+        'HOST': cred.dbHost,
+        'PORT': cred.dbPort
     }
 }
 
