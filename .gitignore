@@ -1,2 +1,2 @@
-backend/backend/credentials.py
-backend/*/__pycache__
+credentials.py
+__pycache__
