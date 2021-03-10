@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const baseUrl = 'http://localhost:8080/api/thread';
+const baseUrl = 'http://localhost:8080/api/thread/';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +14,7 @@ export class ThreadService {
   }
 
   get(id) {
-    return this.http.get(`${baseUrl}/${id}`);
+    return this.http.get(`${baseUrl}/${id}/`);
   }
 
   create(data) {
@@ -22,11 +22,11 @@ export class ThreadService {
   }
 
   update(id, data) {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    return this.http.put(`${baseUrl}/${id}/`, data);
   }
 
   delete(id) {
-    return this.http.delete(`${baseUrl}/${id}`);
+    return this.http.delete(`${baseUrl}/${id}/`);
   }
 
   deleteAll() {
