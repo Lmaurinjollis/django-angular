@@ -1,1 +1,45 @@
-<p>thread-list works!</p>
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Threads List</h4>
+
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let thread of threads; let i = index"
+          [class.active]="i == currentIndex" (click)="setActiveThread(thread, i)">
+        {{ thread.title }}
+      </li>
+    </ul>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllThreads()">
+      Remove All
+    </button>
+  </div>
+
+  <div class="col-md-6">
+    <div *ngIf="currentThread">
+      <h4>Thread</h4>
+
+      <div>
+        <label><strong>Title:</strong></label> {{ currentThread.title }}
+      </div>
+
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentThread.description }}
+      </div>
+
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentThread.published ? "Published" : "Pending" }}
+      </div>
+
+      <a class="badge badge-warning" href="/threads/{{ currentThread.id }}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentThread">
+      <br/>
+      <p>Please click on a Thread...</p>
+    </div>
+  </div>
+</div>
