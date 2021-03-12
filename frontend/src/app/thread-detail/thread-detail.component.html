@@ -1,5 +1,6 @@
 <div *ngIf="currentThread" class="edit-form">
   <h4>Thread</h4>
+  <!--Thread form-->
   <form>
     <div class="form-group">
       <label for="title">Title</label>
@@ -17,7 +18,7 @@
       {{ currentThread.published ? "Published" : "Pending" }}
     </div>
   </form>
-
+  <!--Update the status-->
   <button class="badge badge-primary mr-2" *ngIf="currentThread.published" (click)="updatePublished(false)">
     UnPublish
   </button>
@@ -35,6 +36,7 @@
   <p>{{ message }}</p>
 </div>
 
+<!--If the thread can't be accessed because it doesn't exist-->
 <div *ngIf="!currentThread">
   <br />
   <p>Cannot access this Thread...</p>

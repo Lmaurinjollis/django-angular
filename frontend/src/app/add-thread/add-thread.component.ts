@@ -8,6 +8,7 @@ import { ThreadService } from 'src/app/thread.service';
 })
 export class AddThreadComponent implements OnInit {
 
+  // Represent a thread as in the DB
   thread = {
     title: '',
     description: '',
