@@ -35,7 +35,7 @@ def thread_list(request):
         return JsonResponse(thread_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        # Delete and count all threas to delete
+        # Delete and count all threads to delete
         count = Thread.objects.all().delete()
         # Return a 204 Response when everything is deleted
         return JsonResponse({'message': '{} Threads were deleted successfully!'.format(count[0])},

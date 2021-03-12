@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThreadService } from 'src/app/thread.service';
+// We will reroute our user when they delete a thread
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -17,9 +18,11 @@ export class ThreadDetailComponent implements OnInit {
 
   ngOnInit() {
     this.message = '';
+    // get the id of the current thread we want to edit
     this.getThread(this.route.snapshot.paramMap.get('id'));
   }
 
+  // get the thread by id
   getThread(id) {
     this.threadService.get(id).subscribe(
       data => {
@@ -32,6 +35,7 @@ export class ThreadDetailComponent implements OnInit {
     );
   }
 
+  // Update the published field of a thread
   updatePublished(status) {
     const data = {
       title: this.currentThread.title,
@@ -50,6 +54,7 @@ export class ThreadDetailComponent implements OnInit {
     );
   }
 
+  // Update a thread with the current data in the form and display a message
   updateThread() {
     this.threadService.update(this.currentThread.id, this.currentThread).subscribe(
       response => {
@@ -62,6 +67,7 @@ export class ThreadDetailComponent implements OnInit {
     );
   }
 
+  // Delete the thread
   deleteThread() {
     this.threadService.delete(this.currentThread.id).subscribe(
       response => {
