@@ -34,7 +34,7 @@ Now with a thread created we will se this:
 
 When we click on a thread detail and a edit button will be displayed, clicking on edit will display this page:
 
-![Edit Thread](FrontThreadEdit.png)
+![Edit Thread](img/FrontThreadEdit.png)
 
 ## Tech/Framework
 
